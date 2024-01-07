@@ -2,7 +2,7 @@
 
 namespace RestWithASP_NET.Services.Implementations
 {
-    public class PersonServiceImplementation
+    public class PersonServiceImplementation : IPersonService
     {
         // Counter responsible for generating a fake ID
         // since we are not accessing any database

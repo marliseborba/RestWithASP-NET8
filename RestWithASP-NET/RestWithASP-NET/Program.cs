@@ -1,8 +1,14 @@
+using RestWithASP_NET.Services.Implementations;
+using RestWithASP_NET.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+//Dependency Injection
+builder.Services.AddScoped<IPersonService, PersonServiceImplementation>();
 
 var app = builder.Build();
 
