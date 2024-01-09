@@ -2,23 +2,22 @@
 using Microsoft.AspNetCore.Mvc;
 using RestWithASP_NET.Model;
 using RestWithASP_NET.Services;
-using System;
 
 namespace RestWithASP_NET.Controllers
 {
-    [ApiVersion("1")]
     [ApiController]
-    [Route("api/[controller]/v{version:apiVersion}")]
-    public class PersonController : ControllerBase
+    [ApiVersion("2")]
+    [Route("api/person/v{version:apiVersion}")]
+    public class PersonController2 : ControllerBase
     {
-        private readonly ILogger<PersonController> _logger;
+        private readonly ILogger<PersonController2> _logger;
 
         // Declaration of the service used
         private IPersonService _personService;
 
         // Injection of an instance of IPersonService
         // when creating an instance of PersonController
-        public PersonController(ILogger<PersonController> logger, IPersonService personService)
+        public PersonController2(ILogger<PersonController2> logger, IPersonService personService)
         {
             _logger = logger;
             _personService = personService;
@@ -29,7 +28,7 @@ namespace RestWithASP_NET.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_personService.FindAll());
+            return Ok(_personService.FindByID(3));
         }
 
         // Maps GET requests to https://localhost:{port}/api/person/{id}
