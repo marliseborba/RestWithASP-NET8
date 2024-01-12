@@ -1,7 +1,7 @@
 ﻿using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
+using RestWithASP_NET.Business;
 using RestWithASP_NET.Model;
-using RestWithASP_NET.Services;
 
 namespace RestWithASP_NET.Controllers
 {
@@ -13,14 +13,14 @@ namespace RestWithASP_NET.Controllers
         private readonly ILogger<PersonController> _logger;
 
         // Declaration of the service used
-        private IPersonService _personService;
+        private IPersonBusiness _personBusiness;
 
         // Injection of an instance of IPersonService
         // when creating an instance of PersonController
-        public PersonController(ILogger<PersonController> logger, IPersonService personService)
+        public PersonController(ILogger<PersonController> logger, IPersonBusiness personBusiness)
         {
             _logger = logger;
-            _personService = personService;
+            _personBusiness = personBusiness;
         }
 
         // Maps GET requests to https://localhost:{port}/api/person
@@ -29,7 +29,7 @@ namespace RestWithASP_NET.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_personService.FindAll());
+            return Ok(_personBusiness.FindAll());
         }
 
         // Maps GET requests to https://localhost:{port}/api/person/{id}

@@ -1,12 +1,12 @@
 ﻿using RestWithASP_NET.Model;
 
-namespace RestWithASP_NET.Services.Implementations
+namespace RestWithASP_NET.Business.Implementations
 {
-    public class PersonServiceImplementation : IPersonService
+    public class PersonBusinessImplementation : IPersonBusiness
     {
         private MySQLContext _context;
 
-        public PersonServiceImplementation(MySQLContext context)
+        public PersonBusinessImplementation(MySQLContext context)
         {
             _context = context;
         }
