@@ -6,7 +6,7 @@ using RestWithASP_NET.Model;
 namespace RestWithASP_NET.Controllers
 {
     [ApiController]
-    [ApiVersion("1.0")]
+    [ApiVersion("1")]
     [Route("api/[controller]/v{version:apiVersion}")]
     public class PersonController : ControllerBase
     {
@@ -38,7 +38,7 @@ namespace RestWithASP_NET.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(long id)
         {
-            var person = _personService.FindByID(id);
+            var person = _personBusiness.FindByID(id);
             if (person == null)
                 return NotFound();
             return Ok(person);
@@ -51,7 +51,7 @@ namespace RestWithASP_NET.Controllers
         {
             if (person == null)
                 return BadRequest();
-            return Ok(_personService.Create(person));
+            return Ok(_personBusiness.Create(person));
         }
 
         // Maps PUT requests to https://localhost:{port}/api/person/
@@ -61,7 +61,7 @@ namespace RestWithASP_NET.Controllers
         {
             if (person == null)
                 return BadRequest();
-            return Ok(_personService.Update(person));
+            return Ok(_personBusiness.Update(person));
         }
 
         // Maps DELETE requests to https://localhost:{port}/api/person/{id}
@@ -69,7 +69,7 @@ namespace RestWithASP_NET.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(long id)
         {
-            _personService.Delete(id);
+            _personBusiness.Delete(id);
             return NoContent();
         }
     }
