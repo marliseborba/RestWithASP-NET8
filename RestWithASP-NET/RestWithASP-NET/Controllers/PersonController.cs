@@ -6,18 +6,18 @@ using RestWithASP_NET.Services;
 namespace RestWithASP_NET.Controllers
 {
     [ApiController]
-    [ApiVersion("2")]
-    [Route("api/person/v{version:apiVersion}")]
-    public class PersonController2 : ControllerBase
+    [ApiVersion("1.0")]
+    [Route("api/[controller]/v{version:apiVersion}")]
+    public class PersonController : ControllerBase
     {
-        private readonly ILogger<PersonController2> _logger;
+        private readonly ILogger<PersonController> _logger;
 
         // Declaration of the service used
         private IPersonService _personService;
 
         // Injection of an instance of IPersonService
         // when creating an instance of PersonController
-        public PersonController2(ILogger<PersonController2> logger, IPersonService personService)
+        public PersonController(ILogger<PersonController> logger, IPersonService personService)
         {
             _logger = logger;
             _personService = personService;
@@ -25,10 +25,11 @@ namespace RestWithASP_NET.Controllers
 
         // Maps GET requests to https://localhost:{port}/api/person
         // Get no parameters for FindAll -> Search All
+
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_personService.FindByID(3));
+            return Ok(_personService.FindAll());
         }
 
         // Maps GET requests to https://localhost:{port}/api/person/{id}
