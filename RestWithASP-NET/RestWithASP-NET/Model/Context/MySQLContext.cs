@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-namespace RestWithASP_NET.Model
+namespace RestWithASP_NET.Model.Context
 {
     public class MySQLContext : DbContext
     {

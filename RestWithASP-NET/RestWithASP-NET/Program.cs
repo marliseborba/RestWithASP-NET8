@@ -3,10 +3,10 @@ using RestWithASP_NET.Business;
 using RestWithASP_NET.Repository;
 using RestWithASP_NET.Repository.Implementations;
 using Microsoft.EntityFrameworkCore;
-using RestWithASP_NET.Model;
 using MySqlConnector;
 using Serilog;
 using EvolveDb;
+using RestWithASP_NET.Model.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
