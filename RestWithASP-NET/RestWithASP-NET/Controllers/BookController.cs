@@ -1,6 +1,7 @@
 ﻿using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
 using RestWithASP_NET.Business;
+using RestWithASP_NET.Data.VO;
 using RestWithASP_NET.Model;
 
 namespace RestWithASP_NET.Controllers
@@ -47,7 +48,7 @@ namespace RestWithASP_NET.Controllers
         // Maps POST requests to https://localhost:{port}/api/Book/
         // [FromBody] consumes the JSON object sent in the request body
         [HttpPost]
-        public IActionResult Post([FromBody] Book Book)
+        public IActionResult Post([FromBody] BookVO Book)
         {
             if (Book == null)
                 return BadRequest();
@@ -57,7 +58,7 @@ namespace RestWithASP_NET.Controllers
         // Maps PUT requests to https://localhost:{port}/api/Book/
         // [FromBody] consumes the JSON object sent in the request body
         [HttpPut]
-        public IActionResult Put([FromBody] Book Book)
+        public IActionResult Put([FromBody] BookVO Book)
         {
             if (Book == null)
                 return BadRequest();
