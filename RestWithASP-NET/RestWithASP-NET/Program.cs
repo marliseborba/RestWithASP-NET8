@@ -8,6 +8,8 @@ using EvolveDb;
 using RestWithASP_NET.Model.Context;
 using RestWithASP_NET.Repository.Generic;
 using Microsoft.Net.Http.Headers;
+using RestWithASP_NET.Hypermedia.Filters;
+using RestWithASP_NET.Hypermedia.Enricher;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,6 +36,11 @@ builder.Services.AddMvc(options =>
 })
 .AddXmlSerializerFormatters();
 
+var filterOptions = new HyperMediaFilterOptions();
+filterOptions.ContentResponseEnricherList.Add(new PersonEnricher());
+
+builder.Services.AddSingleton(filterOptions);
+
 // Versioning API
 builder.Services.AddApiVersioning();
 
@@ -51,6 +58,8 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapControllerRoute("DefaultApi", "{controller=values}/{id?}");
 
 app.Run();
 
