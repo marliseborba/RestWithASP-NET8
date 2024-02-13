@@ -11,7 +11,7 @@ namespace RestWithASP_NET.Hypermedia.Enricher
         private readonly object _lock = new object();
         protected override Task EnrichModel(PersonVO content, IUrlHelper urlHelper)
         {
-            var path = "api/persons/v1";
+            var path = "api/person";
             string link = GetLink(content.Id, urlHelper, path);
 
             content.Links.Add(new HyperMediaLink()
@@ -45,7 +45,7 @@ namespace RestWithASP_NET.Hypermedia.Enricher
                 Rel = RelationType.self,
                 Type = "int"
             });
-            return null;
+            return Task.CompletedTask; // para não dar exceção NullReferenceException
         }
 
         private string GetLink(long id, IUrlHelper urlHelper, string path)
